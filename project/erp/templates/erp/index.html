@@ -1,0 +1,13 @@
+<h2>Menu de ERP</h2>
+
+<menu>
+    <button><a href="{% url 'erp:show' %}">Ver</a></button>
+    <button><a href="{% url 'erp:register' %}">registrar</a></button>
+</menu>
+
+<h3>Tabla de registros</h3>
+<div>
+    <p>{{departament}} empleado{{departament | pluralize}}</p>
+    <p>{{departament}} puestos{{departament | pluralize}}</p>
+    <p>{{departament}} departamento{{departament | pluralize}}</p>
+</div>
