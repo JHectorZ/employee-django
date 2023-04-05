@@ -1,0 +1,11 @@
+<h2>Lista de empleados</h2>
+
+{% if null_message %}
+    <p><strong>No hay empleados registrados</strong></p>
+{% endif %}
+<ul>
+    {% for employee in list_employees %}
+        <li>{{employee.name_employee}}</li>
+    
+    {% endfor %}
+</ul>

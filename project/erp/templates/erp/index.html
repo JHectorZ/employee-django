@@ -2,12 +2,11 @@
 
 <menu>
     <button><a href="{% url 'erp:show' %}">Ver</a></button>
-    <button><a href="{% url 'erp:register' %}">registrar</a></button>
+    <button><a href="{% url 'erp:register_form' %}">registrar</a></button>
 </menu>
 
 <h3>Tabla de registros</h3>
 <div>
-    <p>{{departament}} empleado{{departament | pluralize}}</p>
-    <p>{{departament}} puestos{{departament | pluralize}}</p>
-    <p>{{departament}} departamento{{departament | pluralize}}</p>
+    <p>{{job}} empleado{{job | pluralize}}</p>
+    <p>{{job}} puesto{{job | pluralize}}</p>
 </div>
