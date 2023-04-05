@@ -7,7 +7,9 @@ from .models import Employee, Job
 
 def index(request):
     job = Job.objects.count()
-    return render(request, 'erp/index.html', {'job': job})
+    employee = Employee.objects.count()
+    return render(request, 'erp/index.html', {'job': job,
+                                              'employee':employee})
 
 
 def show(request):
@@ -17,11 +19,18 @@ def show(request):
 
 
 def register_form(request):
-    questions = ('Nombre', 'Edad', 'Correo', )
-    return render(request, 'erp/register.html', {})
+    jobs = Job.objects
+    return render(request, 'erp/register.html', {'jobs':jobs})
 
 
-def register_db(request, name_employee):
-    return HttpResponse(f'Has registrado a {name_employee}')
+def register_db(request):
+    try:
+        data = request.POST
+        job = Job.objects.get(pk = data['job'])
+    except:
+        return render(request, 'erp/register.html', {'error_message': 'Error en el formulario'})
+    else:
+        job.employee_set.create(name_employee = data['user'], age = data['age'], email = data['email'])
+        return HttpResponse('Todo bien...')
 
 
