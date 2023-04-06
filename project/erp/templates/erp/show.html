@@ -3,9 +3,44 @@
 {% if null_message %}
     <p><strong>No hay empleados registrados</strong></p>
 {% endif %}
-<ul>
-    {% for employee in list_employees %}
-        <li>{{employee.name_employee}}</li>
-    
-    {% endfor %}
-</ul>
+
+<main>
+    <ul>
+        <h3>ID</h3>
+        {% for employee in list_employees %}
+            <li>{{employee.id}}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <h3>Nombre</h3>
+        {% for employee in list_employees %}
+            <li>{{employee.name_employee}}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <h3>Edad</h3>
+        {% for employee in list_employees %}
+            <li>{{employee.age}}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <h3>Correo</h3>
+        {% for employee in list_employees %}
+            <li>{{employee.email}}</li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        <h3>Puesto</h3>
+        {% for employee in list_employees %}
+            <li>{{employee.job_status}}</li>
+        {% endfor %}
+    </ul>
+
+
+</main>
+
+<button><a href="{% url 'erp:index' %}">Regresar a menu</a></button>

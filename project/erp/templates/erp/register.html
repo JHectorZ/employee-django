@@ -1,12 +1,6 @@
 <form action="{% url 'erp:register_db'  %}" method = "post">
 {% csrf_token %}
 
-    {% for job in jobs.all %}
-        <datalist id="jobs">
-            <option value="{{ job.id }}" label="{{ job.name_job }}">
-        </datalist>
-    {% endfor %}
-
     <fieldset>
         <legend><h2>Registro de empleado</h2></legend>
 
@@ -21,13 +15,19 @@
             <input type="number" name="age" required>
 
             <label for="email">Correo electronico</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email" required>  
 
-            
 
-            <label for="">Puesto</label>
-            <input list = "jobs" name ="job" required autocomplete="off">
+            <select name = "job">
+                <option value="" disabled selected>Selecione puesto</option>
+                {% for job in jobs %}
+                    <option value="{{job.id}}">{{job.name_job}}</option>
+                {% endfor %}
+            </select>
+            {% comment %} <label for="">Puesto</label> {% endcomment %}
+            {% comment %} <input list = "jobs" name ="job" required autocomplete="off"> {% endcomment %}
 
     </fieldset>
     <button type="submit">Registrar empleado</button>
 </form>
+<button><a href="{% url 'erp:index' %}">Regresar a menu</a></button>

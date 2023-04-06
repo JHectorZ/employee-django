@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Employee, Job
 
 
@@ -18,8 +18,23 @@ def show(request):
                                              'null_message': employees.count() == 0})
 
 
+def register_job(request):
+    return render(request, 'erp/register_job.html',{})
+
+
+def register_job_db(request):
+    data = request.POST
+    try:
+        job = Job(name_job = data['name'], description = data['description'])
+    except (KeyError):
+        return render(request, 'erp/register_job.html', {'error_message':'Error en el formulario'})
+    else:
+        job.save()
+        return HttpResponseRedirect(reverse('erp:index'))
+    
+    
 def register_form(request):
-    jobs = Job.objects
+    jobs = Job.objects.all
     return render(request, 'erp/register.html', {'jobs':jobs})
 
 
@@ -30,7 +45,5 @@ def register_db(request):
     except:
         return render(request, 'erp/register.html', {'error_message': 'Error en el formulario'})
     else:
-        job.employee_set.create(name_employee = data['user'], age = data['age'], email = data['email'])
-        return HttpResponse('Todo bien...')
-
-
+        job.employee_set.create(name_employee = data['user'].title(), age = data['age'], email = data['email'])
+        return HttpResponseRedirect(reverse('erp:index'))

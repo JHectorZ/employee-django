@@ -1,0 +1,19 @@
+<form action=" {% url 'erp:register_job_db' %}" method="post">
+{% csrf_token %}
+
+    <fieldset>
+        <legend><h2>Registrar puesto laboral</h2></legend>
+        {% if error_message %}
+            <p><strong>Error de formulario</strong></p>
+        {% endif %}
+
+        <label for="name">Nombre</label>
+        <input type="text" name="name" required>
+
+        <label for="name">Descripcion</label>
+        <input type="text" name="description" required>
+
+    </fieldset>
+    <button type="submit">Registrar puesto</button>
+</form>
+<button><a href="{% url 'erp:index' %}">Regresar a menu</a></button>
